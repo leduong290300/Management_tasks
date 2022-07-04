@@ -1,0 +1,11 @@
+{"level":"error","message":"Error connecting: ER_NOT_SUPPORTED_AUTH_MODE: Client does not support authentication protocol requested by server; consider upgrading MySQL client"}
+{
+  message: 'Error connecting: ER_NOT_SUPPORTED_AUTH_MODE: Client does not support authentication protocol requested by server; consider upgrading MySQL client',
+  level: 'error',
+  timestamp: '7/2/2022, 2:55:40 PM'
+}
+{
+  message: 'Error connecting: connect ECONNREFUSED 127.0.0.1:3306',
+  level: 'error',
+  timestamp: '7/2/2022, 8:41:39 PM'
+}

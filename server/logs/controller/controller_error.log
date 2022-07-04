@@ -1,0 +1,5 @@
+{
+  message: "ER_BAD_NULL_ERROR: Column 'email' cannot be null",
+  level: 'error',
+  timestamp: '7/4/2022, 10:42:21 AM'
+}
