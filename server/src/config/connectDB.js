@@ -1,3 +1,4 @@
+const systemLogs = require("../config/configWinston").systemLogs;
 const mysql = require("mysql");
 
 const connect = mysql.createConnection({
@@ -10,13 +11,14 @@ const connect = mysql.createConnection({
 try {
   connect.connect(function (err) {
     if (err) {
-      console.error("Error connecting: " + err.stack);
+      systemLogs.error(`Error connecting: ${err.message}`);
       return;
     }
 
-    console.log("Connect success");
+    systemLogs.info("Connect sucessfully");
   });
 } catch (error) {
+  systemLogs.error(`Error system : ${error}`);
   connect.end();
 }
 module.exports = connect;
