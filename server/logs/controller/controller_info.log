@@ -3,3 +3,11 @@
   level: 'error',
   timestamp: '7/4/2022, 10:42:21 AM'
 }
+{ message: null, level: 'error', timestamp: '7/4/2022, 2:45:48 PM' }
+{ message: null, level: 'error', timestamp: '7/4/2022, 2:46:01 PM' }
+{ message: null, level: 'error', timestamp: '7/4/2022, 2:47:11 PM' }
+{ message: null, level: 'error', timestamp: '7/4/2022, 2:59:32 PM' }
+{ message: null, level: 'error', timestamp: '7/4/2022, 4:01:49 PM' }
+{ message: null, level: 'error', timestamp: '7/4/2022, 4:16:41 PM' }
+{ message: null, level: 'error', timestamp: '7/4/2022, 4:20:16 PM' }
+{ message: null, level: 'error', timestamp: '7/4/2022, 4:21:33 PM' }

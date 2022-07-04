@@ -55,6 +55,21 @@ const controllerLogs = winston.createLogger({
   ],
 });
 
+const authenticateLogs = winston.createLogger({
+  format: winston.format.json(),
+  transports: [
+    new winston.transports.File({
+      filename: "logs/authenticate/authenticate_error.log",
+      level: "error",
+      format: format.combine(
+        format.timestamp({ format: timezoned }),
+        format.prettyPrint(),
+      ),
+      maxsize: 5242880,
+    }),
+  ],
+});
+
 // if (process.env.NODE_ENV !== "production") {
 //   systemLogs.add(
 //     new winston.transports.Console({
@@ -63,4 +78,8 @@ const controllerLogs = winston.createLogger({
 //   );
 // }
 
-module.exports = { systemLogs: systemLogs, controllerLogs: controllerLogs };
+module.exports = {
+  systemLogs: systemLogs,
+  controllerLogs: controllerLogs,
+  authenticateLogs: authenticateLogs,
+};

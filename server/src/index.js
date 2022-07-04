@@ -1,5 +1,6 @@
 const express = require("express");
 const apiRouter = require("./router/api");
+const cors = require("cors");
 
 require("dotenv").config();
 
@@ -8,8 +9,7 @@ const port = process.env.PORT;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-//*Connect database
+app.use(cors());
 
 //* Router
 apiRouter(app);

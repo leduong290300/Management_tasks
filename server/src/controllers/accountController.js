@@ -2,20 +2,26 @@ const connect = require("../config/connectDB");
 const bcrypt = require("bcryptjs");
 const systemLogs = require("../config/configWinston").systemLogs;
 const controllerLogs = require("../config/configWinston").controllerLogs;
+const jwt = require("jsonwebtoken");
 
 const handleLogin = (req, res) => {
   const { email, password } = req.body;
   try {
     if (email && password) {
       connect.query(
-        `select password from accounts where email =?`,
+        `select * from accounts where email =?`,
         [email],
         (err, results) => {
           controllerLogs.error(err);
           if (bcrypt.compareSync(password, results[0].password)) {
+            const accessToken = jwt.sign(
+              { userId: results[0].id },
+              process.env.ACCESS_TOKEN_SECRET,
+            );
             return res.status(200).json({
               success: true,
               message: "Đăng nhập thành công",
+              accessToken,
             });
           } else {
             return res.status(400).json({
@@ -62,13 +68,18 @@ const handleRegister = (req, res) => {
                   connect.query(
                     `insert into accounts (firstName, lastName, email, password) values (?,?,?,?)`,
                     [firstName, lastName, email, hashPassword],
-                    function (err, insert) {
+                    (err, result) => {
                       if (err) {
                         controllerLogs.error(err.message);
                       } else {
+                        const accessToken = jwt.sign(
+                          { userId: result.insertId },
+                          process.env.ACCESS_TOKEN_SECRET,
+                        );
                         return res.status(200).json({
                           success: true,
                           message: "Đăng ký tài khoản thành công",
+                          accessToken,
                         });
                       }
                     },
