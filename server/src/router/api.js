@@ -22,9 +22,9 @@ const apiRouter = (app) => {
   /**
    * Router: /api/v1/forgot_password
    * Description: Thay đổi mật khẩu
-   * Method: PUT
+   * Method: PATCH
    * */
-  router.post("/forgot_password", accountController.handleForgotPassword);
+  router.patch("/forgot_password", accountController.handleForgotPassword);
 
   /**
    * Router: /api/v1/all
