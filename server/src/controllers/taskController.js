@@ -27,10 +27,19 @@ const handleGetAllTask = (req, res) => {
 const handleCreateNewTask = (req, res) => {
   const { title, content, status } = req.body;
   const { userId } = req;
+
+  //* Lấy thời gian hiện tại
+  const today = new Date();
+  const date =
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+  const time =
+    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  const dateTime = date + " " + time;
+
   try {
     connect.query(
-      `insert into tasks (title, content, status, account_id) values (?,?,?,?)`,
-      [title, content, status, userId],
+      `insert into tasks (title, content, status, account_id,createdAt) values (?,?,?,?,?)`,
+      [title, content, status, userId, dateTime],
       (err, result) => {
         if (err) {
           controllerLogs.error(err.message);
@@ -52,6 +61,14 @@ const handleUpdateTask = (req, res) => {
   const { userId } = req;
   const { title, content, status } = req.body;
 
+  //* Lấy thời gian hiện tại
+  const today = new Date();
+  const date =
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+  const time =
+    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  const dateTime = date + " " + time;
+
   try {
     connect.query(
       `select * from tasks where id =? and account_id=?`,
@@ -67,11 +84,12 @@ const handleUpdateTask = (req, res) => {
             });
           } else {
             connect.query(
-              `update tasks set title=?,content=?,status=?`,
+              `update tasks set title=?,content=?,status=?,updatedAt=?`,
               [
                 title ? title : result[0].title,
                 content ? content : result[0].content,
                 status ? status : result[0].status,
+                dateTime,
               ],
               (err) => {
                 if (err) {
@@ -88,7 +106,9 @@ const handleUpdateTask = (req, res) => {
         }
       },
     );
-  } catch (error) {}
+  } catch (error) {
+    return systemLogs.error(error);
+  }
 };
 
 const handleDeleteTask = (req, res) => {

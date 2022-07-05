@@ -40,6 +40,14 @@ const handleLogin = (req, res) => {
 const handleRegister = (req, res) => {
   const { firstName, lastName, email, password } = req.body;
 
+  //* Lấy thời gian hiện tại
+  const today = new Date();
+  const date =
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+  const time =
+    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  const dateTime = date + " " + time;
+
   try {
     if (!email) {
       return res.status(400).json({
@@ -66,8 +74,8 @@ const handleRegister = (req, res) => {
                   controllerLogs.error(err.message);
                 } else {
                   connect.query(
-                    `insert into accounts (firstName, lastName, email, password) values (?,?,?,?)`,
-                    [firstName, lastName, email, hashPassword],
+                    `insert into accounts (firstName, lastName, email, password,createdAt) values (?,?,?,?,?)`,
+                    [firstName, lastName, email, hashPassword, dateTime],
                     (err, result) => {
                       if (err) {
                         controllerLogs.error(err.message);
@@ -96,6 +104,59 @@ const handleRegister = (req, res) => {
   }
 };
 
-const handleForgotPassword = (req, res) => {};
+const handleForgotPassword = (req, res) => {
+  const { email, password } = req.body;
+  //* Lấy thời gian hiện tại
+  const today = new Date();
+  const date =
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+  const time =
+    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  const dateTime = date + " " + time;
+
+  try {
+    connect.query(
+      `select * from accounts where email =?`,
+      [email],
+      (err, result) => {
+        if (err) {
+          return controllerLogs.error(err.message);
+        } else {
+          if (result.length <= 0) {
+            return res.status(400).json({
+              success: false,
+              message: "Tài khoản không tồn tại",
+            });
+          } else {
+            bcrypt.genSalt(10, (err, salt) => {
+              bcrypt.hash(password, salt, (err, hashPassword) => {
+                if (err) {
+                  return controllerLogs.error(err.message);
+                } else {
+                  connect.query(
+                    `update accounts set password =?,updatedAt=? where email=?`,
+                    [hashPassword, dateTime, email],
+                    (err) => {
+                      if (err) {
+                        return controllerLogs.error(err.message);
+                      } else {
+                        return res.status(200).json({
+                          success: true,
+                          message: "Cập nhật mật khẩu thành công",
+                        });
+                      }
+                    },
+                  );
+                }
+              });
+            });
+          }
+        }
+      },
+    );
+  } catch (error) {
+    return systemLogs.error(error);
+  }
+};
 
 module.exports = { handleLogin, handleRegister, handleForgotPassword };
