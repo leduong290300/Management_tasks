@@ -43,15 +43,6 @@ const controllerLogs = winston.createLogger({
       ),
       maxsize: 5242880,
     }),
-    new winston.transports.File({
-      filename: "logs/controller/controller_info.log",
-      level: "info",
-      format: format.combine(
-        format.timestamp({ format: timezoned }),
-        format.prettyPrint(),
-      ),
-      maxsize: 5242880,
-    }),
   ],
 });
 
