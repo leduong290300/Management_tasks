@@ -11,3 +11,10 @@
 { message: null, level: 'error', timestamp: '7/4/2022, 4:16:41 PM' }
 { message: null, level: 'error', timestamp: '7/4/2022, 4:20:16 PM' }
 { message: null, level: 'error', timestamp: '7/4/2022, 4:21:33 PM' }
+{ message: null, level: 'error', timestamp: '7/5/2022, 9:52:34 AM' }
+{ message: null, level: 'error', timestamp: '7/5/2022, 10:46:44 AM' }
+{
+  message: "ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(title,content,status) values ('NodeJS','NodeJS','Bắt đầu làm')' at line 1",
+  level: 'error',
+  timestamp: '7/5/2022, 11:34:11 AM'
+}
