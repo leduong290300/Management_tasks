@@ -1894,3 +1894,8 @@
   level: 'info',
   timestamp: '7/5/2022, 3:24:47 PM'
 }
+{
+  message: 'Connect sucessfully',
+  level: 'info',
+  timestamp: '7/6/2022, 9:58:04 AM'
+}
