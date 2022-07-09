@@ -47,3 +47,10 @@
 { message: null, level: 'error', timestamp: '7/5/2022, 3:20:08 PM' }
 { message: null, level: 'error', timestamp: '7/5/2022, 3:20:18 PM' }
 { message: null, level: 'error', timestamp: '7/5/2022, 3:23:16 PM' }
+{
+  code: 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR',
+  fatal: false,
+  level: 'error',
+  timestamp: '7/9/2022, 10:14:26 AM'
+}
+{ message: null, level: 'error', timestamp: '7/9/2022, 10:17:15 AM' }
