@@ -1,46 +1,124 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./login.css";
+import ToastNotif from "../../../components/toast/toast";
 
 export default function Login() {
-  return (
-    <Form className="mt-3">
-      <Form.Group className="mb-3">
-        <Form.Label className="text-white d-flex justify-content-start">
-          Email
-        </Form.Label>
-        <Form.Control type="email" placeholder="example@gmail.com" />
-      </Form.Group>
+  //* State
+  const [login, setLogin] = useState({
+    email: "",
+    password: "",
+  });
+  const [showToats, setShowToats] = useState(false);
+  const [messageToats, setMessageToats] = useState("");
+  const regaxEmail =
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-      <Form.Group className="mb-3">
-        <Form.Label className="text-white d-flex justify-content-start">
-          Mật khẩu
-        </Form.Label>
-        <Form.Control type="password" placeholder="******" />
-      </Form.Group>
-      <div className="action mb-3">
-        <div className="action_check">
-          <Form.Group>
-            <Form.Check
-              className="text-white "
-              type="checkbox"
-              label="Ghi nhớ đăng nhập"
-            />
-          </Form.Group>
+  //* Get state
+  const { email, password } = login;
+
+  //* Lắng nghe sự thay đổi ở form login
+  const changeLogin = (event) => {
+    setLogin({ ...login, [event.target.name]: event.target.value });
+  };
+
+  //* Hành động
+  const onCloseToats = () => setShowToats(false);
+
+  //* Xử lí đăng nhập
+  const handleLogin = (e) => {
+    e.preventDefault();
+    //* Nếu không có email và password
+    if (!email || !password) {
+      setShowToats(true);
+      setMessageToats("Email và mật khẩu không được để trống");
+      setTimeout(() => {
+        setShowToats(false);
+        setMessageToats("");
+      }, 2000);
+      return;
+    }
+
+    //* Nếu email không hợp lệ
+    if (!regaxEmail.test(email)) {
+      setShowToats(true);
+      setMessageToats("Email không hợp lệ");
+      setTimeout(() => {
+        setShowToats(false);
+        setMessageToats("");
+      }, 2000);
+      return;
+    }
+
+    //* Nếu mật khẩu ít hơn 6 ký tự
+    if (password.length <= 6) {
+      setShowToats(true);
+      setMessageToats("Mật khẩu không được ít hơn 6 kỹ tự");
+      setTimeout(() => {
+        setShowToats(false);
+        setMessageToats("");
+      }, 2000);
+      return;
+    }
+  };
+
+  return (
+    <>
+      <ToastNotif
+        showToats={showToats}
+        messageToats={messageToats}
+        onCloseToats={onCloseToats}
+      />
+      <Form className="mt-3" onSubmit={handleLogin}>
+        <Form.Group className="mb-3">
+          <Form.Label className="text-white d-flex justify-content-start">
+            Email
+          </Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="example@gmail.com"
+            name="email"
+            value={email}
+            onChange={changeLogin}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label className="text-white d-flex justify-content-start">
+            Mật khẩu
+          </Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="******"
+            name="password"
+            value={password}
+            onChange={changeLogin}
+          />
+        </Form.Group>
+        <div className="action mb-3">
+          <div className="action_check">
+            <Form.Group>
+              <Form.Check
+                className="text-white "
+                type="checkbox"
+                label="Ghi nhớ đăng nhập"
+              />
+            </Form.Group>
+          </div>
+          <div className="action_link">
+            <Link to="/register">
+              <span className="register">Đăng ký</span>
+            </Link>
+            <Link to="/forgot_password">
+              <span className="forgot">Quên mật khẩu?</span>
+            </Link>
+          </div>
         </div>
-        <div className="action_link">
-          <Link to="/register">
-            <span className="register">Đăng ký</span>
-          </Link>
-          <Link to="/forgot_password">
-            <span className="forgot">Quên mật khẩu?</span>
-          </Link>
-        </div>
-      </div>
-      <Button variant="primary" type="submit">
-        Đăng nhập
-      </Button>
-    </Form>
+        <Button variant="primary" type="submit">
+          Đăng nhập
+        </Button>
+      </Form>
+    </>
   );
 }
