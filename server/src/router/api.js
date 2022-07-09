@@ -6,6 +6,12 @@ const verifyToken = require("../middleware/authenticate");
 
 const apiRouter = (app) => {
   /**
+   * Router: /api/v1/account
+   * Description: Xác thực tài khoản
+   * Method: GET
+   * */
+  router.route("/account").get(verifyToken, accountController.handleVerify);
+  /**
    * Router: /api/v1/login
    * Description: Đăng nhập tài khoản
    * Method: POST

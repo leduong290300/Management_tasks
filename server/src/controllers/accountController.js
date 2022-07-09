@@ -4,6 +4,34 @@ const systemLogs = require("../config/configWinston").systemLogs;
 const controllerLogs = require("../config/configWinston").controllerLogs;
 const jwt = require("jsonwebtoken");
 
+const handleVerify = (req, res) => {
+  try {
+    connect.query(
+      `select * from accounts where id =?`,
+      [req.userId],
+      (err, result) => {
+        if (err) {
+          controllerLogs.error(err);
+        } else {
+          if (!result) {
+            return res.status(400).json({
+              success: false,
+              message: "Tài khoản không tồn tại",
+            });
+          } else {
+            return res.status(200).json({
+              success: true,
+              account: result,
+            });
+          }
+        }
+      },
+    );
+  } catch (error) {
+    return systemLogs.error(error);
+  }
+};
+
 const handleLogin = (req, res) => {
   const { email, password } = req.body;
   try {
@@ -159,4 +187,9 @@ const handleForgotPassword = (req, res) => {
   }
 };
 
-module.exports = { handleLogin, handleRegister, handleForgotPassword };
+module.exports = {
+  handleVerify,
+  handleLogin,
+  handleRegister,
+  handleForgotPassword,
+};

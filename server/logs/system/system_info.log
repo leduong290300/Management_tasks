@@ -1899,3 +1899,33 @@
   level: 'info',
   timestamp: '7/6/2022, 9:58:04 AM'
 }
+{
+  message: 'Error connecting: connect ECONNREFUSED 127.0.0.1:3306',
+  level: 'error',
+  timestamp: '7/9/2022, 10:12:48 AM'
+}
+{
+  message: 'Connect sucessfully',
+  level: 'info',
+  timestamp: '7/9/2022, 10:16:54 AM'
+}
+{
+  message: 'Connect sucessfully',
+  level: 'info',
+  timestamp: '7/9/2022, 10:19:14 AM'
+}
+{
+  message: 'Connect sucessfully',
+  level: 'info',
+  timestamp: '7/9/2022, 10:20:51 AM'
+}
+{
+  message: 'Connect sucessfully',
+  level: 'info',
+  timestamp: '7/9/2022, 10:21:23 AM'
+}
+{
+  message: 'Connect sucessfully',
+  level: 'info',
+  timestamp: '7/9/2022, 10:21:33 AM'
+}
