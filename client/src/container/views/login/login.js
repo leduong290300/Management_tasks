@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./login.css";
 import ToastNotif from "../../../components/toast/toast";
-
+import { AuthContext } from "../../../context/authContext";
 export default function Login() {
   //* State
   const [login, setLogin] = useState({
@@ -14,6 +14,9 @@ export default function Login() {
   const [messageToats, setMessageToats] = useState("");
   const regaxEmail =
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  //* Get Context
+  const { handleLoginAccount } = useContext(AuthContext);
 
   //* Get state
   const { email, password } = login;
@@ -27,7 +30,7 @@ export default function Login() {
   const onCloseToats = () => setShowToats(false);
 
   //* Xử lí đăng nhập
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     //* Nếu không có email và password
     if (!email || !password) {
@@ -55,6 +58,27 @@ export default function Login() {
     if (password.length <= 6) {
       setShowToats(true);
       setMessageToats("Mật khẩu không được ít hơn 6 kỹ tự");
+      setTimeout(() => {
+        setShowToats(false);
+        setMessageToats("");
+      }, 2000);
+      return;
+    }
+
+    try {
+      const data = await handleLoginAccount(login);
+      if (!data.success) {
+        setShowToats(true);
+        setMessageToats(data.message);
+        setTimeout(() => {
+          setShowToats(false);
+          setMessageToats("");
+        }, 2000);
+        return;
+      }
+    } catch (error) {
+      setShowToats(true);
+      setMessageToats(error);
       setTimeout(() => {
         setShowToats(false);
         setMessageToats("");

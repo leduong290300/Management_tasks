@@ -6,6 +6,7 @@ import NavBar from "../components/navbar/navbar";
 import Spinner from "react-bootstrap/Spinner";
 
 export default function Protected({ component: Component, ...rest }) {
+  //* Get context
   const {
     authState: { authLoading, isAuthenticated },
   } = useContext(AuthContext);
