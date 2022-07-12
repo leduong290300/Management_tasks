@@ -6,6 +6,7 @@ const connect = mysql.createConnection({
   user: "root",
   database: "management_tasks",
   password: "Leduong@2903",
+  port: 3306,
 });
 
 try {
@@ -14,8 +15,6 @@ try {
       systemLogs.error(`Error connecting: ${err.message}`);
       return;
     }
-
-    systemLogs.info("Connect sucessfully");
   });
 } catch (error) {
   systemLogs.error(`Error system : ${error}`);
