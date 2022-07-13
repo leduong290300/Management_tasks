@@ -36,6 +36,7 @@ const AuthContextProvider = ({ children }) => {
       });
     }
   };
+
   useEffect(() => {
     verifyAccount();
   }, []);
@@ -54,7 +55,18 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
-  const authContextData = { handleLoginAccount, authState };
+  //* Đăng xuất tài khoản
+  const handleLogout = async () => {
+    localStorage.removeItem("managementTask");
+    setAuthToken(null);
+    dispatch({
+      type: "SET_AUTH",
+      payload: { isAuthenticated: false, user: null },
+    });
+    await verifyAccount();
+  };
+
+  const authContextData = { handleLoginAccount, handleLogout, authState };
   return (
     <AuthContext.Provider value={authContextData}>
       {children}
