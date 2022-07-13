@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
@@ -9,7 +9,10 @@ import logoutIcon from "../../assets/icons/logout.svg";
 export default function NavBar() {
   //* Get Context
   const {
-    authState: { user },
+    authState: {
+      user: { firstName, lastName },
+    },
+    handleLogout,
   } = useContext(AuthContext);
 
   return (
@@ -24,6 +27,9 @@ export default function NavBar() {
             <Nav.Link className="font-weight-bolder " to="/" as={Link}>
               Trang chủ
             </Nav.Link>
+            <Nav.Link className="font-weight-bolder " to="/store" as={Link}>
+              Kho lưu trữ
+            </Nav.Link>
             <Nav.Link className="font-weight-bolder " to="/about" as={Link}>
               Thông tin
             </Nav.Link>
@@ -31,12 +37,13 @@ export default function NavBar() {
 
           <Nav className="align-items-center">
             <Nav.Link className="font-weight-bolder " disabled>
-              Xin chào ,
+              Xin chào {firstName + " " + lastName}
             </Nav.Link>
             <Button
               variant="secondary"
               className="font-weight-bolder "
               size="sm"
+              onClick={() => handleLogout()}
             >
               <img
                 src={logoutIcon}
