@@ -115,3 +115,72 @@
 { message: null, level: 'error', timestamp: '7/12/2022, 2:25:36 PM' }
 { message: null, level: 'error', timestamp: '7/12/2022, 2:31:54 PM' }
 { message: null, level: 'error', timestamp: '7/13/2022, 10:32:38 AM' }
+{
+  code: 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR',
+  fatal: false,
+  level: 'error',
+  timestamp: '7/13/2022, 7:52:34 PM'
+}
+{
+  code: 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR',
+  fatal: false,
+  level: 'error',
+  timestamp: '7/13/2022, 7:52:54 PM'
+}
+{
+  code: 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR',
+  fatal: false,
+  level: 'error',
+  timestamp: '7/13/2022, 7:53:07 PM'
+}
+{
+  code: 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR',
+  fatal: false,
+  level: 'error',
+  timestamp: '7/13/2022, 7:53:21 PM'
+}
+{
+  code: 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR',
+  fatal: false,
+  level: 'error',
+  timestamp: '7/13/2022, 7:53:41 PM'
+}
+{
+  code: 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR',
+  fatal: false,
+  level: 'error',
+  timestamp: '7/13/2022, 7:53:57 PM'
+}
+{
+  code: 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR',
+  fatal: false,
+  level: 'error',
+  timestamp: '7/13/2022, 7:54:17 PM'
+}
+{ message: null, level: 'error', timestamp: '7/13/2022, 7:55:34 PM' }
+{
+  message: "ER_TRUNCATED_WRONG_VALUE: Truncated incorrect DOUBLE value: '2022-7-14 14:47:27'",
+  level: 'error',
+  timestamp: '7/14/2022, 2:47:27 PM'
+}
+{
+  message: "ER_TRUNCATED_WRONG_VALUE: Truncated incorrect DOUBLE value: '2022-7-14 14:47:30'",
+  level: 'error',
+  timestamp: '7/14/2022, 2:47:30 PM'
+}
+{
+  message: "ER_TRUNCATED_WRONG_VALUE: Truncated incorrect DOUBLE value: '2022-7-14 16:16:55'",
+  level: 'error',
+  timestamp: '7/14/2022, 4:16:55 PM'
+}
+{
+  message: "ER_TRUNCATED_WRONG_VALUE: Truncated incorrect DOUBLE value: '2022-7-14 16:20:42'",
+  level: 'error',
+  timestamp: '7/14/2022, 4:20:42 PM'
+}
+{
+  message: "ER_TRUNCATED_WRONG_VALUE: Truncated incorrect DOUBLE value: '2022-7-14 16:20:52'",
+  level: 'error',
+  timestamp: '7/14/2022, 4:20:52 PM'
+}
+{ message: null, level: 'error', timestamp: '7/14/2022, 4:59:03 PM' }

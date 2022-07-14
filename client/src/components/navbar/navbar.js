@@ -16,27 +16,39 @@ export default function NavBar() {
   } = useContext(AuthContext);
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="black" expand="lg">
       <Container>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse
           id="basic-navbar-nav"
           className="align-items-center justify-content-between"
         >
-          <Nav className="mr-auto">
-            <Nav.Link className="font-weight-bolder " to="/" as={Link}>
+          <Nav className="mr-auto ">
+            <Nav.Link
+              className="font-weight-bolder text-white"
+              to="/"
+              as={Link}
+            >
               Trang chủ
             </Nav.Link>
-            <Nav.Link className="font-weight-bolder " to="/store" as={Link}>
+            <Nav.Link
+              className="font-weight-bolder text-white"
+              to="/store"
+              as={Link}
+            >
               Kho lưu trữ
             </Nav.Link>
-            <Nav.Link className="font-weight-bolder " to="/about" as={Link}>
+            <Nav.Link
+              className="font-weight-bolder text-white"
+              to="/about"
+              as={Link}
+            >
               Thông tin
             </Nav.Link>
           </Nav>
 
           <Nav className="align-items-center">
-            <Nav.Link className="font-weight-bolder " disabled>
+            <Nav.Link className="font-weight-bolder text-white" disabled>
               Xin chào {firstName + " " + lastName}
             </Nav.Link>
             <Button

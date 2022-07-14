@@ -51,11 +51,11 @@ const apiRouter = (app) => {
   /**
    * Router: /api/v1/update_task/:id
    * Description: Cập nhật bài viết
-   * Method: patch
+   * Method: put
    * */
   router
     .route("/update_task/:id")
-    .patch(verifyToken, taskController.handleUpdateTask);
+    .put(verifyToken, taskController.handleUpdateTask);
 
   /**
    * Router: /api/v1/task/:id

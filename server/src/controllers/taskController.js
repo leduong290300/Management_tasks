@@ -44,10 +44,21 @@ const handleCreateNewTask = (req, res) => {
         if (err) {
           controllerLogs.error(err.message);
         } else {
-          return res.status(200).json({
-            success: true,
-            message: "Thêm công việc thành công",
-          });
+          connect.query(
+            `select * from tasks where id=?`,
+            [result.insertId],
+            (err, value) => {
+              if (err) {
+                return controllerLogs.error(err.message);
+              } else {
+                return res.status(200).json({
+                  success: true,
+                  message: "Thêm công việc thành công",
+                  value: value[0],
+                });
+              }
+            },
+          );
         }
       },
     );
@@ -84,21 +95,33 @@ const handleUpdateTask = (req, res) => {
             });
           } else {
             connect.query(
-              `update tasks set title=?,content=?,status=?,updatedAt=?`,
+              `update tasks set title=?,content=?,status=?,updatedAt=? where id=?`,
               [
                 title ? title : result[0].title,
                 content ? content : result[0].content,
                 status ? status : result[0].status,
                 dateTime,
+                id,
               ],
               (err) => {
                 if (err) {
                   return controllerLogs.error(err.message);
                 } else {
-                  return res.status(200).json({
-                    success: true,
-                    message: "Cập nhật công việc thành công",
-                  });
+                  connect.query(
+                    `select * from tasks where id=?`,
+                    [id],
+                    (err, value) => {
+                      if (err) {
+                        return controllerLogs.error(err.message);
+                      } else {
+                        return res.status(200).json({
+                          success: true,
+                          message: "Cập nhật công việc thành công",
+                          result: value[0],
+                        });
+                      }
+                    },
+                  );
                 }
               },
             );
