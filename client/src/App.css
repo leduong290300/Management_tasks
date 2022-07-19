@@ -111,3 +111,13 @@ button.post-button.btn:active {
 .post-title {
   margin-bottom: 0.5rem;
 }
+/*Check list*/
+.card-check {
+  margin-left: 13px;
+  padding-left: 0;
+}
+.check_list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

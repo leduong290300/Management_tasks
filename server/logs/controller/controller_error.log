@@ -184,3 +184,71 @@
   timestamp: '7/14/2022, 4:20:52 PM'
 }
 { message: null, level: 'error', timestamp: '7/14/2022, 4:59:03 PM' }
+{
+  code: 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR',
+  fatal: false,
+  level: 'error',
+  timestamp: '7/15/2022, 2:26:25 PM'
+}
+{ message: null, level: 'error', timestamp: '7/15/2022, 2:31:42 PM' }
+{ message: null, level: 'error', timestamp: '7/15/2022, 2:32:15 PM' }
+{
+  code: 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR',
+  fatal: false,
+  level: 'error',
+  timestamp: '7/19/2022, 3:41:44 PM'
+}
+{
+  code: 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR',
+  fatal: false,
+  level: 'error',
+  timestamp: '7/19/2022, 3:42:04 PM'
+}
+{
+  code: 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR',
+  fatal: false,
+  level: 'error',
+  timestamp: '7/19/2022, 3:43:20 PM'
+}
+{
+  code: 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR',
+  fatal: false,
+  level: 'error',
+  timestamp: '7/19/2022, 3:43:40 PM'
+}
+{
+  code: 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR',
+  fatal: false,
+  level: 'error',
+  timestamp: '7/19/2022, 3:44:18 PM'
+}
+{
+  code: 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR',
+  fatal: false,
+  level: 'error',
+  timestamp: '7/19/2022, 3:44:38 PM'
+}
+{
+  code: 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR',
+  fatal: false,
+  level: 'error',
+  timestamp: '7/19/2022, 3:45:52 PM'
+}
+{
+  code: 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR',
+  fatal: false,
+  level: 'error',
+  timestamp: '7/19/2022, 3:46:12 PM'
+}
+{
+  code: 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR',
+  fatal: false,
+  level: 'error',
+  timestamp: '7/19/2022, 3:50:33 PM'
+}
+{
+  code: 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR',
+  fatal: false,
+  level: 'error',
+  timestamp: '7/19/2022, 3:50:33 PM'
+}

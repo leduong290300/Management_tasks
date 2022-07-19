@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
-import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import React, { useContext, useState } from "react";
+import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
+import { FilterContext } from "../../context/filterContext";
 
 import "./navbar.css";
 import logoutIcon from "../../assets/icons/logout.svg";
+import searchIcon from "../../assets/icons/icons8-search.svg";
 
 export default function NavBar() {
   //* Get Context
@@ -14,6 +16,17 @@ export default function NavBar() {
     },
     handleLogout,
   } = useContext(AuthContext);
+
+  const { handleFilterBySearch } = useContext(FilterContext);
+
+  //* State
+  const [search, setSearch] = useState("");
+
+  //* Action
+  const onChangeSearch = (e) => {
+    setSearch(e.target.value);
+    handleFilterBySearch(e.target.value);
+  };
 
   return (
     <Navbar bg="black" expand="lg">
@@ -46,6 +59,26 @@ export default function NavBar() {
               Thông tin
             </Nav.Link>
           </Nav>
+
+          <Form className="d-flex">
+            <Form.Control
+              type="search"
+              placeholder="Tìm kiếm..."
+              className="me-2"
+              name="search"
+              value={search}
+              onChange={onChangeSearch}
+            />
+            <Button variant="outline-success text-white">
+              <img
+                src={searchIcon}
+                alt="searchIcon"
+                width="30"
+                height="30"
+                className="mr-2"
+              />
+            </Button>
+          </Form>
 
           <Nav className="align-items-center">
             <Nav.Link className="font-weight-bolder text-white" disabled>

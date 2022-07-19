@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Main from "../container/layouts/main";
 import AuthContextProvider from "../context/authContext";
 import TaskContextProvider from "../context/taskContext";
+import FilterContextProvider from "../context/filterContext";
 
 //*Views
 import Login from "../container/views/login/login";
@@ -19,22 +20,24 @@ export default function Routers() {
   return (
     <AuthContextProvider>
       <TaskContextProvider>
-        <Router>
-          <Switch>
-            <Protected exact path="/" component={Dashboard} />
-            <Route path="/about" exact component={About} />
-            <Protected path="/store" exact component={Store} />
-            <Route>
-              <Main>
-                <Switch>
-                  <Route path="/login" exact component={Login} />
-                  <Route path="/register" component={Register} />
-                  <Route path="/forgot_password" component={ForgotPassword} />
-                </Switch>
-              </Main>
-            </Route>
-          </Switch>
-        </Router>
+        <FilterContextProvider>
+          <Router>
+            <Switch>
+              <Protected exact path="/" component={Dashboard} />
+              <Route path="/about" exact component={About} />
+              <Protected path="/store" exact component={Store} />
+              <Route>
+                <Main>
+                  <Switch>
+                    <Route path="/login" exact component={Login} />
+                    <Route path="/register" component={Register} />
+                    <Route path="/forgot_password" component={ForgotPassword} />
+                  </Switch>
+                </Main>
+              </Route>
+            </Switch>
+          </Router>
+        </FilterContextProvider>
       </TaskContextProvider>
     </AuthContextProvider>
   );

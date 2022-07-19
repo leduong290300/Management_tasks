@@ -1,10 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../context/authContext";
 import { TaskContext } from "../../../context/taskContext";
+import { FilterContext } from "../../../context/filterContext";
 import {
   Button,
   Card,
   Col,
+  Form,
   OverlayTrigger,
   Row,
   Spinner,
@@ -17,6 +19,9 @@ import SingleTask from "../../../components/task/singleTask";
 import addIcon from "../../../assets/icons/plus-circle-fill.svg";
 
 export default function Dashboard() {
+  //* State
+  const [state, setState] = useState("Tất cả");
+  const [searchParam] = useState(["title", "content"]);
   //* Context
   const {
     authState: {
@@ -32,10 +37,46 @@ export default function Dashboard() {
     setShowToast,
   } = useContext(TaskContext);
 
+  const {
+    taskState: { search, status },
+    handleFilterByStatus,
+  } = useContext(FilterContext);
+
   //* Effect
   useEffect(() => {
     handleGetAllTasks();
   }, []);
+
+  //* Action
+  const onChangeStatus = (e) => {
+    setState(e.target.value);
+    handleFilterByStatus(e.target.value);
+  };
+
+  //* Lọc theo trạng thái hoặc tìm kiếm
+  const filterBySearchOrStatus = (tasks) => {
+    return tasks.filter((task) => {
+      if (task.status == status) {
+        return searchParam.some((newTask) => {
+          return (
+            task[newTask]
+              .toString()
+              .toLowerCase()
+              .indexOf(search.toLowerCase()) > -1
+          );
+        });
+      } else if (status == "Tất cả") {
+        return searchParam.some((newTask) => {
+          return (
+            task[newTask]
+              .toString()
+              .toLowerCase()
+              .indexOf(search.toLowerCase()) > -1
+          );
+        });
+      }
+    });
+  };
 
   let body;
   if (tasksLoading) {
@@ -67,10 +108,33 @@ export default function Dashboard() {
   } else {
     body = (
       <>
+        <Row className="row-cols-1 row-cols-md-3 g-4 mx-auto mt-1">
+          <Card className="shadow card-check mb-3">
+            <Card.Body>
+              <Card.Title>
+                <Row>
+                  <Col>
+                    <p>Lọc bởi trạng thái</p>
+                  </Col>
+                </Row>
+              </Card.Title>
+              <Form.Select value={state} onChange={onChangeStatus}>
+                <option value="Tất cả">Tất cả</option>
+                <option value="Đang thực hiện">Đang thưc hiện</option>
+                <option value="Đã hoàn thành">Đã hoàn thành</option>
+              </Form.Select>
+            </Card.Body>
+          </Card>
+        </Row>
         <Row className="row-cols-1 row-cols-md-3 g-4 mx-auto mt-3">
-          {tasks.map((task) => (
+          {filterBySearchOrStatus(tasks).map((task) => (
             <Col key={task.id} className="my-2">
-              <SingleTask task={task} />
+              <SingleTask
+                id={task.id}
+                status={task.status}
+                title={task.title}
+                content={task.content}
+              />
             </Col>
           ))}
         </Row>
