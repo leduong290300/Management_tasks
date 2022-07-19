@@ -2,7 +2,7 @@ import React from "react";
 import { Badge, Card, Col, Row } from "react-bootstrap";
 import GroupButtons from "../group/button";
 
-export default function SingleTask({ task: { id, status, title, content } }) {
+export default function SingleTask({ id, status, title, content }) {
   return (
     <Card
       className="shadow"
