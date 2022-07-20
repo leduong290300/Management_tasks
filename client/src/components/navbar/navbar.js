@@ -44,13 +44,7 @@ export default function NavBar() {
             >
               Trang chủ
             </Nav.Link>
-            <Nav.Link
-              className="font-weight-bolder text-white"
-              to="/store"
-              as={Link}
-            >
-              Kho lưu trữ
-            </Nav.Link>
+
             <Nav.Link
               className="font-weight-bolder text-white"
               to="/about"

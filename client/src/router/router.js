@@ -11,7 +11,6 @@ import Register from "../container/views/register/register";
 import ForgotPassword from "../container/views/forgot/forgot";
 import Dashboard from "../container/views/dashboard/dashboard";
 import About from "../container/views/about/about";
-import Store from "../container/views/store/store";
 
 //* Protect router
 import Protected from "./protected";
@@ -24,8 +23,8 @@ export default function Routers() {
           <Router>
             <Switch>
               <Protected exact path="/" component={Dashboard} />
-              <Route path="/about" exact component={About} />
-              <Protected path="/store" exact component={Store} />
+              <Protected path="/about" exact component={About} />
+
               <Route>
                 <Main>
                   <Switch>
